@@ -54,20 +54,9 @@ set scrolloff=10
 let g:loaded_matchparen=1
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'benmills/vimux'
-Plug 'davidhalter/jedi-vim'
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'farmergreg/vim-lastplace'
-Plug 'francoiscabrol/ranger.vim'
-let g:ranger_map_keys = 0
-let g:ranger_replace_netrw = 1
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
-Plug 'janko/vim-test'
-let test#python#runner = "pytest"
-let g:test#preserve_screen = 1
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
@@ -75,14 +64,9 @@ Plug 'justinmk/vim-sneak'
 let g:sneak#label = 1
 let g:sneak#s_next = 1
 let g:sneak#use_ic_scs = 1
-Plug 'liuchengxu/vim-which-key'
 Plug 'majutsushi/tagbar'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'rbgrouleff/bclose.vim' " ranger dependency
 Plug 'sheerun/vim-polyglot'
-Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-let g:deoplete#enable_at_startup = 1
-Plug 'Shougo/neco-syntax'
 Plug 'SirVer/ultisnips'
 Plug 'szw/vim-g'
 Plug 'tomasr/molokai'
@@ -123,8 +107,6 @@ nnoremap gl :nohl<CR>
 " LEADERS {{{
 noremap <CR> :
 let mapleader="\<space>"
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :WhichKeyVisual '<Space>'<CR>
 noremap <leader>a :A<CR>
 noremap <leader>b :Buffers<CR>
 noremap <leader>c :Colors<CR>
@@ -165,8 +147,8 @@ noremap <leader>[ :ALEPreviousWrap<CR>
 noremap <leader>' :edit term://ipython<CR>
 noremap <leader>" :vsplit term://ipython<CR>
 noremap <leader>; :call VimuxSlime(join(getline(1, '$'), "\n"))<CR>
-noremap <leader>~ :RangerWorkingDirectory<CR>
-noremap <leader>` :RangerCurrentFile<CR>
+" noremap <leader>~ :RangerWorkingDirectory<CR>
+" noremap <leader>` :RangerCurrentFile<CR>
 noremap <leader>- :Locate 
 noremap <leader>= :Tabularize 
 noremap <leader>_ :GFiles?<CR>
@@ -184,18 +166,6 @@ noremap <leader>/ :History/<CR>
 " }}}
 " LLOCALS {{{
 let maplocalleader = ";"
-nnoremap <silent> <localleader> :WhichKey ';'<CR>
-vnoremap <silent> <localleader> :WhichKeyVisual ';'<CR>
-" jedi {{{
-noremap <localleader>ji :Pyimport 
-let g:jedi#documentation_command = "<localleader>jh"
-let g:jedi#goto_assignments_command = "<localleader>ja"
-let g:jedi#goto_command = "<localleader>jj"
-let g:jedi#goto_definitions_command = "<localleader>jd"
-let g:jedi#goto_stubs_command = "<localleader>js"
-let g:jedi#rename_command = "<localleader>jr"
-let g:jedi#usages_command = "<localleader>ju"
-" }}}
 " files {{{
 noremap <localleader>ec :e .coveragerc<CR>
 noremap <localleader>ei :e .gitignore<CR>
@@ -229,13 +199,6 @@ noremap <localleader>xu :PlugUpdate<CR>
 noremap <localleader>xg :PlugUpgrade<CR>
 noremap <localleader>xw :PlugSnapshot<CR>
 noremap <localleader>xs :PlugStatus<CR>
-" }}}
-" tests {{{
-noremap <localleader>tf :TestFile<CR>
-noremap <localleader>tl :TestLast<CR>
-noremap <localleader>ts :TestSuite<CR>
-noremap <localleader>tt :TestNearest<CR>
-noremap <localleader>tv :TestVisit<CR>
 " }}}
 " spells {{{
 noremap <localleader>la :set spelllang=en,fr<CR>

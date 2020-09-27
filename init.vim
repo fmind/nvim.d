@@ -4,14 +4,13 @@ set hidden
 set confirm
 set autoread
 set autowrite
-set splitright
-set splitbelow
 " }}}
 " FOLDER {{{
 set foldlevelstart=99
 " }}}
-" FORMAT {{{
-set formatoptions-=cro
+" FRAMES {{{
+set splitbelow
+set splitright
 " }}}
 " INDENT {{{
 set tabstop=4
@@ -23,11 +22,6 @@ set softtabstop=4
 " NUMBER {{{
 set number
 set relativenumber
-" }}}
-" OTHERS {{{
-set shell=/bin/bash
-set clipboard=unnamedplus
-let s:windows_clip = '/mnt/c/Windows/System32/clip.exe'
 " }}}
 " POPUPS {{{
 set wildmode=list:longest,full
@@ -44,6 +38,11 @@ set ignorecase
 set spell
 set spelllang=en,fr
 " }}}
+" SYSTEM {{{
+set shell=/bin/bash
+set clipboard=unnamedplus
+let s:windows_clip = '/mnt/c/Windows/System32/clip.exe'
+" }}}
 " WINDOW {{{
 set linebreak
 set lazyredraw
@@ -53,19 +52,26 @@ set scrolloff=10
 " PLUGIN {{{
 let g:loaded_matchparen=1
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'benmills/vimux'
+Plug 'airblade/vim-gitgutter'
+Plug 'farmergreg/vim-lastplace'
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
+Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak' 
-let g:sneak#label = 1
-let g:sneak#s_next = 1
-let g:sneak#use_ic_scs = 1
+" Plug 'kassio/neoterm'
+" let g:neoterm_autoinsert = 1
+" let g:neoterm_term_per_tab = 1
+" let g:neoterm_default_mod = 'vertical'
 Plug 'majutsushi/tagbar'
+Plug 'mattn/emmet-vim'
+Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 Plug 'szw/vim-g'
@@ -76,14 +82,15 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
-Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'w0rp/ale'
 let g:ale_set_quickfix = 1
 let b:ale_fixers = {'python': ['black', 'isort']}
 let b:ale_linters = {'python': ['mypy', 'pylint']}
 let g:ale_python_pylint_options = '--error-only'
+" Plug 'xolox/vim-session'
 call plug#end()
 " }}}
 " COLORS {{{
@@ -101,18 +108,18 @@ nnoremap E g$
 nnoremap Y y$
 xnoremap < <gv
 xnoremap > >gv
+nnoremap <CR> :
 nnoremap U <C-r>
 nnoremap gl :nohl<CR>
 " }}}
 " LEADERS {{{
-noremap <CR> :
 let mapleader="\<space>"
 noremap <leader>a :A<CR>
 noremap <leader>b :Buffers<CR>
 noremap <leader>c :Colors<CR>
-noremap <leader>d :Ag<CR>
+noremap <leader>d :GFiles<CR>
 noremap <leader>e :Files<CR>
-noremap <leader>f :GFiles<CR>
+noremap <leader>f :Ag<CR>
 noremap <leader>g :Google 
 noremap <leader>h :Helptags<CR>
 noremap <leader>i :Lines<CR>
@@ -121,41 +128,33 @@ noremap <leader>k :bprevious<CR>
 noremap <leader>l :BLines<CR>
 noremap <leader>m :Marks<CR>
 noremap <leader>n :BCommits<CR>
-noremap <leader>o :call VimuxOpenRunner()<CR>
+noremap <leader>o :YcmCompleter GoTo<CR>
 noremap <leader>p :Commands<CR>
 noremap <leader>q :bdelete<CR>:bnext<CR>
-noremap <leader>r :VimuxRunLastCommand<CR>
-noremap <leader>s :Snippets<CR>
+noremap <leader>r :YcmCompleter RefactorRename 
+noremap <leader>s :YcmCompleter GoToSymbol 
 noremap <leader>t :BTags<CR>
 noremap <leader>u :UltiSnipsEdit<CR>
-noremap <leader>v "vy :call VimuxSlime(@v)<CR>
+noremap <leader>v :Snippets<CR>
 noremap <leader>w :Windows<CR>
-noremap <leader>x :ALEFix<CR>
-noremap <leader>y :Filetypes<CR>
-noremap <leader>z :VimuxZoomRunner<CR>
-noremap <leader><CR> :make<CR>
+noremap <leader>x :ALEFixSuggest<CR>
+noremap <leader>y :YcmCompleter GetType<CR>
+noremap <leader>z :Filetypes<CR>
+noremap <leader><CR> :make
 noremap <leader><tab> :b#<CR>
-noremap <leader><space> :make
-noremap <leader>< :prev<CR>
-noremap <leader>> :lnext<CR>
-noremap <leader>( :cprev<CR>
-noremap <leader>) :cnext<CR>
-noremap <leader>} :tnext<CR>
-noremap <leader>{ :tprev<CR>
-noremap <leader>] :ALENextWrap<CR>
-noremap <leader>[ :ALEPreviousWrap<CR>
-noremap <leader>' :edit term://ipython<CR>
+noremap <leader><BS> :YcmCompleter GoToReferences<CR>
+noremap <leader>' :vsplit term://fish<CR>
 noremap <leader>" :vsplit term://ipython<CR>
-noremap <leader>; :call VimuxSlime(join(getline(1, '$'), "\n"))<CR>
-" noremap <leader>~ :RangerWorkingDirectory<CR>
-" noremap <leader>` :RangerCurrentFile<CR>
+noremap <leader>; :YcmCompleter GetDoc<CR>
+noremap <leader>` :NERDTreeToggle<CR>
+noremap <leader>~ :NERDTreeToggleVCS<CR>
 noremap <leader>- :Locate 
 noremap <leader>= :Tabularize 
 noremap <leader>_ :GFiles?<CR>
 noremap <leader>+ :Commits<CR>
-noremap <leader>@ :RainbowToggle<CR>
-noremap <leader># :ALEToggle<CR>
-noremap <leader>$ :TagbarToggle<CR>
+noremap <leader>! :GitGutterToggle<CR>
+noremap <leader>@ :TagbarToggle<CR>
+noremap <leader># :YcmRestartServer<CR>
 noremap <leader>. :edit $MYVIMRC<CR>
 noremap <leader>, :Gw<CR>
 noremap <leader>? :Maps<CR>
@@ -191,20 +190,11 @@ noremap <localleader>eV :e ~/.config/nvim/init.vim<CR>
 noremap <localleader>eX :e ~/.xonshrc<CR>
 noremap <localleader>eY :e ~/.pypirc<CR>
 " }}}
-" plugs {{{
-noremap <localleader>xd :PlugDiff<CR>
-noremap <localleader>xc :PlugClean<CR>
-noremap <localleader>xi :PlugInstall<CR>
-noremap <localleader>xu :PlugUpdate<CR>
-noremap <localleader>xg :PlugUpgrade<CR>
-noremap <localleader>xw :PlugSnapshot<CR>
-noremap <localleader>xs :PlugStatus<CR>
-" }}}
 " spells {{{
-noremap <localleader>la :set spelllang=en,fr<CR>
+noremap <localleader>ls :set nospell<CR>
 noremap <localleader>le :set spelllang=en<CR>
 noremap <localleader>lf :set spelllang=fr<CR>
-noremap <localleader>ls :set nospell<CR>
+noremap <localleader>la :set spelllang=en,fr<CR>
 " }}}
 " python {{{
 noremap <localleader>pb :!bandit %<CR>
@@ -224,8 +214,31 @@ noremap <localleader>pvv :!python3 -m venv venv<CR>
 noremap <localleader>ppi :!python3 -m pip install 
 noremap <localleader>ppn :!python3 -m pip install pynvim<CR>
 " }}}
+" neoterm {{{
+" nnoremap <localleader>tt :T 
+" nnoremap <localleader>tr :Tnew<CR>
+" nnoremap <localleader>tq :Tkill<CR>
+" nnoremap <localleader>tc :Tclear<CR>
+" nnoremap <localleader>to :Ttoggle<CR>
+" nnoremap <localleader>tj :TREPLSendFile<CR>
+" nnoremap <localleader>tk :TREPLSendLine<CR>
+" vnoremap <localleader>tl :TREPLSendSelection<CR>
+" }}}
+" extensions {{{
+nnoremap <localleader>xd :PlugDiff<CR>
+nnoremap <localleader>xc :PlugClean<CR>
+nnoremap <localleader>xi :PlugInstall<CR>
+nnoremap <localleader>xu :PlugUpdate<CR>
+nnoremap <localleader>xg :PlugUpgrade<CR>
+nnoremap <localleader>xw :PlugSnapshot<CR>
+nnoremap <localleader>xs :PlugStatus<CR>
+" }}}
 " }}}
 " TERMINALS {{{
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
 tnoremap <C-[> <C-\><C-n>
 tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
@@ -235,16 +248,18 @@ inoremap <A-h> <C-\><C-N><C-w>h
 inoremap <A-j> <C-\><C-N><C-w>j
 inoremap <A-k> <C-\><C-N><C-w>k
 inoremap <A-l> <C-\><C-N><C-w>l
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
 " }}}
 " AUTO-GROUPS {{{
+" AutoFmt {{{
+augroup AutoFmt
+    autocmd!
+    autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
+augroup END
+" }}}
 " AutoVim {{{
 augroup AutoVim
     autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC | call lightline#colorscheme()
 augroup END
 " }}}
 " WSLYank {{{
@@ -254,5 +269,11 @@ if executable(s:windows_clip)
         autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:windows_clip, @0) | endif
     augroup END
 endif
+" }}}
+" TermIns {{{
+augroup TermIns
+    autocmd!
+    autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+augroup END
 " }}}
 " }}}

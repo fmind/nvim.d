@@ -82,6 +82,7 @@ Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+Plug 'terryma/vim-expand-region'
 Plug 'tomasr/molokai'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -135,6 +136,10 @@ xnoremap > >gv
 nnoremap <CR> :
 nnoremap U <C-r>
 nnoremap gl :nohl<CR>
+" }}}
+" EXPAND {{{
+map <C-j> <Plug>(expand_region_expand)
+map <C-k> <Plug>(expand_region_shrink)
 " }}}
 " NEOTERM {{{
 nnoremap ;' :Tnew<CR> 
@@ -202,6 +207,8 @@ noremap <leader>! :GitGutterToggle<CR>
 noremap <leader>@ :TagbarToggle<CR>
 noremap <leader># :YcmRestartServer<CR>
 noremap <leader>$ :UltiSnipsEdit<CR>
+noremap <leader>% :setlocal paste!<CR>
+noremap <leader>0 :cd %:p:h<CR>:pwd<CR>
 noremap <leader>. :edit $MYVIMRC<CR>
 noremap <leader>, :OpenSession<CR>
 noremap <leader>< gT
@@ -212,7 +219,7 @@ noremap <leader>\ :History<CR>
 noremap <leader>/ :History/<CR>
 noremap <leader>: :History:<CR>
 " }}}
-" LLOCALS {{{
+" LEADERL {{{
 let maplocalleader=";"
 " python {{{
 noremap <localleader>pb :!bandit %<CR>
@@ -233,7 +240,7 @@ noremap <localleader>ppi :!python3 -m pip install
 noremap <localleader>ppn :!python3 -m pip install pynvim<CR>
 " }}}
 " }}}
-" TERMINALS {{{
+" TERMINAL {{{
 nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
@@ -248,7 +255,7 @@ inoremap <A-j> <C-\><C-N><C-w>j
 inoremap <A-k> <C-\><C-N><C-w>k
 inoremap <A-l> <C-\><C-N><C-w>l
 " }}}
-" AUTO-GROUPS {{{
+" AUTOGROUP {{{
 " AutoFmt {{{
 augroup AutoFmt
     autocmd!

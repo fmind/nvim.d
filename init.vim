@@ -61,6 +61,9 @@ let g:jupytext_fmt='py:light'
 Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
 Plug 'janko-m/vim-test'
+let g:test#preserve_screen=1
+let g:test#strategy="neoterm"
+let g:test#python#runner="pytest"
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
@@ -136,32 +139,13 @@ xnoremap > >gv
 nnoremap <CR> :
 nnoremap U <C-r>
 nnoremap gl :nohl<CR>
+xmap g; <Plug>(neoterm-repl-send)
+nmap g; <Plug>(neoterm-repl-send)
+nmap g;; <Plug>(neoterm-repl-send-line)
 " }}}
 " EXPAND {{{
 map <C-j> <Plug>(expand_region_expand)
 map <C-k> <Plug>(expand_region_shrink)
-" }}}
-" NEOTERM {{{
-nnoremap ;' :Tnew<CR> 
-nnoremap ;; :T 
-nnoremap ;a :TcloseAll<CR>
-nnoremap ;c :Tclear<CR>
-nnoremap ;e :Texec 
-nnoremap ;f :TREPLSendFile<CR> 
-nnoremap ;j :TREPLSendLine<CR> 
-nnoremap ;k :Tkill<CR> 
-nnoremap ;l :Tls<CR>
-nnoremap ;n :Tnext<CR>
-nnoremap ;o :Topen 
-nnoremap ;p :Tmap  
-nnoremap ;p :Tprevious<CR>
-nnoremap ;q :Tclose 
-nnoremap ;s :TREPLSetTerm 
-nnoremap ;t :Ttoggle<CR> 
-vnoremap ;; :TREPLSendSelection<CR>
-xmap g; <Plug>(neoterm-repl-send)
-nmap g; <Plug>(neoterm-repl-send)
-nmap g;; <Plug>(neoterm-repl-send-line)
 " }}}
 " LEADERS {{{
 let mapleader="\<space>"
@@ -221,23 +205,47 @@ noremap <leader>: :History:<CR>
 " }}}
 " LEADERL {{{
 let maplocalleader=";"
+nnoremap ;; :T 
+nnoremap ;' :Tnew<CR> 
+nnoremap ;" :Ttoggle<CR> 
+nnoremap ;a :TcloseAll<CR>
+nnoremap ;c :Tclear<CR>
+nnoremap ;e :Texec 
+nnoremap ;f :TREPLSendFile<CR> 
+nnoremap ;j :TREPLSendLine<CR> 
+nnoremap ;k :Tkill<CR> 
+nnoremap ;l :Tls<CR>
+nnoremap ;n :Tnext<CR>
+nnoremap ;o :Topen 
+nnoremap ;m :Tmap  
+nnoremap ;p :Tprevious<CR>
+nnoremap ;q :Tclose 
+nnoremap ;s :TREPLSetTerm 
+vnoremap ;; :TREPLSendSelection<CR>
 " python {{{
-noremap <localleader>pb :!bandit %<CR>
-noremap <localleader>pc :!coverage %<CR>
-noremap <localleader>pd :!pydoc3 
-noremap <localleader>pe :!python3 %<CR>
-noremap <localleader>pf :!black %<CR>
-noremap <localleader>pi :!isort %<CR>
-noremap <localleader>pl :!pylint %<CR>
-noremap <localleader>pm :!mypy %<CR>
-noremap <localleader>po :!inv
-noremap <localleader>pr :!rope
-noremap <localleader>pt :!pytest %<CR>
-noremap <localleader>pu :!vulture %<CR>
-noremap <localleader>py :!ipython -i %<CR>
-noremap <localleader>pvv :!python3 -m venv venv<CR>
-noremap <localleader>ppi :!python3 -m pip install 
-noremap <localleader>ppn :!python3 -m pip install pynvim<CR>
+noremap <localleader>ib :!bandit %<CR>
+noremap <localleader>ic :!coverage %<CR>
+noremap <localleader>id :!pydoc3 
+noremap <localleader>ie :!python3 %<CR>
+noremap <localleader>if :!black %<CR>
+noremap <localleader>ii :!isort %<CR>
+noremap <localleader>il :!pylint %<CR>
+noremap <localleader>im :!mypy %<CR>
+noremap <localleader>io :!inv
+noremap <localleader>ir :!rope
+noremap <localleader>it :!pytest %<CR>
+noremap <localleader>iu :!vulture %<CR>
+noremap <localleader>iy :!ipython -i %<CR>
+noremap <localleader>ivv :!python3 -m venv venv<CR>
+noremap <localleader>ipi :!python3 -m pip install 
+noremap <localleader>ipn :!python3 -m pip install pynvim<CR>
+" }}}
+" vim-test {{{
+nnoremap <localleader>tf :TestFile<CR>
+nnoremap <localleader>tl :TestLast<CR>
+nnoremap <localleader>ts :TestSuite<CR>
+nnoremap <localleader>tv :TestVisit<CR>
+nnoremap <localleader>tt :TestNearest<CR>
 " }}}
 " }}}
 " TERMINAL {{{

@@ -221,6 +221,7 @@ nnoremap ;m :Tmap
 nnoremap ;p :Tprevious<CR>
 nnoremap ;q :Tclose 
 nnoremap ;s :TREPLSetTerm 
+nnoremap ;y :py3 
 vnoremap ;; :TREPLSendSelection<CR>
 " python {{{
 noremap <localleader>ib :!bandit %<CR>

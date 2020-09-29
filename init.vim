@@ -68,6 +68,7 @@ Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
+let g:fzf_layout={ 'down': '40%' }
 Plug 'justinmk/vim-sneak' 
 Plug 'kassio/neoterm'
 let g:neoterm_term_per_tab=1
@@ -197,6 +198,8 @@ noremap <leader>. :edit $MYVIMRC<CR>
 noremap <leader>, :OpenSession<CR>
 noremap <leader>< gT
 noremap <leader>> gt
+noremap <leader>] :ALENext<CR>
+noremap <leader>[ :ALEPrevious<CR>
 noremap <leader>? :Maps<CR>
 noremap <leader>\| :Tags<CR>
 noremap <leader>\ :History<CR>

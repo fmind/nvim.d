@@ -140,6 +140,8 @@ xnoremap > >gv
 nnoremap <CR> :
 nnoremap U <C-r>
 nnoremap gl :nohl<CR>
+cnoremap <C-p> <UP>
+cnoremap <C-n> <DOWN>
 xmap g; <Plug>(neoterm-repl-send)
 nmap g; <Plug>(neoterm-repl-send)
 nmap g;; <Plug>(neoterm-repl-send-line)

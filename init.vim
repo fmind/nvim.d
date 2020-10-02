@@ -80,6 +80,7 @@ Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'preservim/nerdtree'
+let NERDTreeSHowHidden=1
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
@@ -268,6 +269,10 @@ inoremap <A-h> <C-\><C-N><C-w>h
 inoremap <A-j> <C-\><C-N><C-w>j
 inoremap <A-k> <C-\><C-N><C-w>k
 inoremap <A-l> <C-\><C-N><C-w>l
+" }}}
+" COMMANDS {{{
+command! Config execute ":e $MYVIMRC"
+command! Reload execute "source $MYVIMRC"
 " }}}
 " AUTOGROUP {{{
 " AutoFmt {{{

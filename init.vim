@@ -139,6 +139,7 @@ nnoremap , @:
 xnoremap < <gv
 xnoremap > >gv
 nnoremap <CR> :
+nnoremap g. :Gw<CR>
 nnoremap U <C-r>
 nnoremap gl :nohl<CR>
 cnoremap <C-p> <UP>

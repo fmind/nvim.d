@@ -71,10 +71,10 @@ Plug 'junegunn/fzf.vim'
 let g:fzf_layout={ 'down': '40%' }
 Plug 'justinmk/vim-sneak' 
 Plug 'kassio/neoterm'
+let g:neoterm_size=20
 let g:neoterm_term_per_tab=1
 let g:neoterm_keep_term_open=0
-let g:neoterm_direct_open_repl=1
-let g:neoterm_default_mod='vertical'
+let g:neoterm_default_mod='botright'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-startify'
@@ -139,14 +139,11 @@ nnoremap , @:
 xnoremap < <gv
 xnoremap > >gv
 nnoremap <CR> :
-nnoremap g. :Gw<CR>
 nnoremap U <C-r>
+nnoremap g. :Gw<CR>
 nnoremap gl :nohl<CR>
 cnoremap <C-p> <UP>
 cnoremap <C-n> <DOWN>
-xmap g; <Plug>(neoterm-repl-send)
-nmap g; <Plug>(neoterm-repl-send)
-nmap g;; <Plug>(neoterm-repl-send-line)
 " }}}
 " EXPAND {{{
 map <C-j> <Plug>(expand_region_expand)
@@ -183,9 +180,14 @@ noremap <leader>z :Filetypes<CR>
 noremap <leader><CR> :make 
 noremap <leader><tab> :b#<CR>
 noremap <leader><BS> :tabnew<CR> 
-noremap <leader>' :vsplit term://fish<CR>
-noremap <leader>" :vsplit term://ipython<CR>
-noremap <leader>; :SaveSession 
+noremap <leader>'' :edit term://fish<CR>
+noremap <leader>'v :vsplit term://fish<CR>
+noremap <leader>'s :split term://fish<CR>
+noremap <leader>"" :edit term://ipython<CR>
+noremap <leader>"v :vsplit term://ipython<CR>
+noremap <leader>"s :split term://ipython<CR>
+noremap <leader>; <Plug>(neoterm-repl-send)
+noremap <leader>;; <Plug>(neoterm-repl-send)<CR>
 noremap <leader>` :NERDTreeToggle<CR>
 noremap <leader>~ :NERDTreeToggleVCS<CR>
 noremap <leader>- :Locate 
@@ -199,7 +201,8 @@ noremap <leader>$ :UltiSnipsEdit<CR>
 noremap <leader>% :setlocal paste!<CR>
 noremap <leader>0 :cd %:p:h<CR>:pwd<CR>
 noremap <leader>. :edit $MYVIMRC<CR>
-noremap <leader>, :OpenSession<CR>
+noremap <leader>,, :SaveSession<CR>
+noremap <leader>,o :OpenSession<CR>
 noremap <leader>< gT
 noremap <leader>> gt
 noremap <leader>] :ALENext<CR>
@@ -238,9 +241,9 @@ noremap <localleader>ie :!python3 %<CR>
 noremap <localleader>if :!black %<CR>
 noremap <localleader>ii :!isort %<CR>
 noremap <localleader>il :!pylint %<CR>
-noremap <localleader>im :!mypy %<CR>
 noremap <localleader>io :!inv
 noremap <localleader>ir :!rope
+noremap <localleader>it :!mypy %<CR>
 noremap <localleader>it :!pytest %<CR>
 noremap <localleader>iu :!vulture %<CR>
 noremap <localleader>iy :!ipython -i %<CR>
@@ -257,6 +260,9 @@ nnoremap <localleader>tt :TestNearest<CR>
 " }}}
 " }}}
 " TERMINAL {{{
+nnoremap <A-o> :on<CR>
+nnoremap <A-s> :split<CR>
+nnoremap <A-v> :vsplit<CR>
 nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k

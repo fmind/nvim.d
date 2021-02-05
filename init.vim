@@ -10,7 +10,6 @@ set splitbelow
 set splitright
 " }}}
 " FOLDER {{{
-set foldmethod=indent
 set foldlevelstart=99
 " }}}
 " INDENT {{{
@@ -284,6 +283,12 @@ command! Config execute ":e $MYVIMRC"
 command! Reload execute "source $MYVIMRC"
 " }}}
 " AUTOGROUP {{{
+" Python {{{
+augroup Python
+    autocmd!
+    autocmd BufNewFile,BufRead * setlocal foldmethod=indent
+augroup END
+" }}}
 " AutoFmt {{{
 augroup AutoFmt
     autocmd!

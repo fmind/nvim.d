@@ -76,6 +76,9 @@ let g:neoterm_size=20
 let g:neoterm_term_per_tab=1
 let g:neoterm_keep_term_open=0
 let g:neoterm_default_mod='botright'
+Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
+let g:doge_doc_standard_python='google' 
+let g:doge_enable_mappings=0
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-startify'
@@ -111,6 +114,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'w0rp/ale'
 let g:ale_set_quickfix=1
@@ -155,7 +159,7 @@ let mapleader="\<space>"
 noremap <leader>a :A<CR>
 noremap <leader>b :Buffers<CR>
 noremap <leader>c :Colors<CR>
-noremap <leader>d :GFiles<CR>
+noremap <leader>d :DogeGenerate<CR>
 noremap <leader>e :Files<CR>
 noremap <leader>f :Ag<CR>
 noremap <leader>g :YcmCompleter GetDoc<CR>
@@ -193,7 +197,7 @@ noremap <leader>` :NERDTreeToggle<CR>
 noremap <leader>~ :NERDTreeToggleVCS<CR>
 noremap <leader>- :Locate 
 noremap <leader>= :Tabularize 
-noremap <leader>_ :GFiles?<CR>
+noremap <leader>_ :GFiles<CR>
 noremap <leader>+ :Commits<CR>
 noremap <leader>! :GitGutterToggle<CR>
 noremap <leader>@ :TagbarToggle<CR>

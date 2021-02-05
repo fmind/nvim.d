@@ -5,12 +5,13 @@ set confirm
 set autoread
 set autowrite
 " }}}
-" FOLDER {{{
-set foldlevelstart=99
-" }}}
-" FRAMES {{{
+" DIVIDE {{{
 set splitbelow
 set splitright
+" }}}
+" FOLDER {{{
+set foldmethod=indent
+set foldlevelstart=99
 " }}}
 " INDENT {{{
 set tabstop=4
@@ -23,7 +24,7 @@ set softtabstop=4
 set number
 set relativenumber
 " }}}
-" POPUPS {{{
+" REVIEW {{{
 set wildmode=list:longest,full
 set completeopt=menuone,longest
 " }}}

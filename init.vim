@@ -81,6 +81,7 @@ let g:doge_doc_standard_python='google'
 let g:doge_enable_mappings=0
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
+Plug 'metakirby5/codi.vim'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'preservim/nerdtree'
@@ -121,6 +122,7 @@ let g:ale_set_quickfix=1
 let b:ale_fixers={'python': ['black', 'isort']}
 let b:ale_linters={'python': ['mypy', 'pylint']}
 let g:ale_python_pylint_options='--error-only'
+Plug 'wellle/targets.vim'
 Plug 'xolox/vim-misc' " vim-session dependency
 Plug 'xolox/vim-session'
 let g:session_autoload='no'
@@ -204,6 +206,7 @@ noremap <leader>@ :TagbarToggle<CR>
 noremap <leader># :YcmRestartServer<CR>
 noremap <leader>$ :UltiSnipsEdit<CR>
 noremap <leader>% :setlocal paste!<CR>
+noremap <leader>* :Codi<CR>
 noremap <leader>0 :cd %:p:h<CR>:pwd<CR>
 noremap <leader>. :edit $MYVIMRC<CR>
 noremap <leader>,, :SaveSession<CR>

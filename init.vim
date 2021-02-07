@@ -54,6 +54,7 @@ let g:loaded_matchparen=1
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'benmills/vimux'
 Plug 'easymotion/vim-easymotion'
 Plug 'farmergreg/vim-lastplace'
 Plug 'godlygeek/tabular'
@@ -63,19 +64,17 @@ Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
 Plug 'janko-m/vim-test'
 let g:test#preserve_screen=1
-let g:test#strategy="neoterm"
+let g:test#strategy="vimux"
 let g:test#python#runner="pytest"
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
+Plug 'julienr/vim-cellmode'
+let g:cellmode_tmux_panenumber='1'
+let g:cellmode_default_mappings='0'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
 let g:fzf_layout={ 'down': '40%' }
 Plug 'justinmk/vim-sneak' 
-Plug 'kassio/neoterm'
-let g:neoterm_size=20
-let g:neoterm_term_per_tab=1
-let g:neoterm_keep_term_open=0
-let g:neoterm_default_mod='botright'
 Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
 let g:doge_doc_standard_python='google' 
 let g:doge_enable_mappings=0
@@ -84,6 +83,7 @@ Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'junegunn/gv.vim'
 Plug 'preservim/nerdtree'
 let NERDTreeSHowHidden=1
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -206,6 +206,8 @@ noremap <leader>@ :TagbarToggle<CR>
 noremap <leader># :YcmRestartServer<CR>
 noremap <leader>$ :UltiSnipsEdit<CR>
 noremap <leader>% :setlocal paste!<CR>
+noremap <leader>^ :GV<CR>
+noremap <leader>& :GV!<CR>
 noremap <leader>* :Codi<CR>
 noremap <leader>0 :cd %:p:h<CR>:pwd<CR>
 noremap <leader>. :edit $MYVIMRC<CR>
@@ -223,24 +225,6 @@ noremap <leader>: :History:<CR>
 " }}}
 " LEADERL {{{
 let maplocalleader=";"
-nnoremap ;; :T 
-nnoremap ;' :Tnew<CR> 
-nnoremap ;" :Ttoggle<CR> 
-nnoremap ;a :TcloseAll<CR>
-nnoremap ;c :Tclear<CR>
-nnoremap ;e :Texec 
-nnoremap ;f :TREPLSendFile<CR> 
-nnoremap ;j :TREPLSendLine<CR> 
-nnoremap ;k :Tkill<CR> 
-nnoremap ;l :Tls<CR>
-nnoremap ;n :Tnext<CR>
-nnoremap ;o :Topen 
-nnoremap ;m :Tmap  
-nnoremap ;p :Tprevious<CR>
-nnoremap ;q :Tclose 
-nnoremap ;s :TREPLSetTerm 
-nnoremap ;y :py3 
-vnoremap ;; :TREPLSendSelection<CR>
 " python {{{
 noremap <localleader>ib :!bandit %<CR>
 noremap <localleader>ic :!coverage %<CR>
@@ -265,6 +249,13 @@ nnoremap <localleader>tl :TestLast<CR>
 nnoremap <localleader>ts :TestSuite<CR>
 nnoremap <localleader>tv :TestVisit<CR>
 nnoremap <localleader>tt :TestNearest<CR>
+nnoremap <localleader>tt :TestNearest<CR>
+" }}}
+" cell-mode {{{
+nnoremap <localleader>eh :call RunTmuxPythonAllCellsAbove()<CR>
+nnoremap <localleader>ej :call RunTmuxPythonCell(0)<CR>
+nnoremap <localleader>ek :call RunTmuxPythonCell(1)<CR>
+vnoremap <localleader>el :call RunTmuxPythonChunk()<CR>
 " }}}
 " }}}
 " TERMINAL {{{

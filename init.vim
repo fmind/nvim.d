@@ -53,7 +53,6 @@ set scrolloff=10
 let g:loaded_matchparen=1
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
-Plug 'AndrewRadev/splitjoin.vim'
 Plug 'benmills/vimux'
 let g:VimuxHeight = "40"
 let g:VimuxOrientation="h"
@@ -190,7 +189,6 @@ noremap <leader><CR> :make
 noremap <leader><tab> :b#<CR>
 noremap <leader><BS> :tabnew<CR> 
 noremap <leader>' :terminal<CR>
-noremap <leader>" :split<CR>:terminal<CR>
 noremap <leader>" :split<CR>:terminal<CR>
 noremap <leader>; :VimuxPromptCommand<CR>
 noremap <leader>` :NERDTreeToggle<CR>

@@ -55,6 +55,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'benmills/vimux'
+let g:VimuxHeight = "40"
+let g:VimuxOrientation="h"
 Plug 'easymotion/vim-easymotion'
 Plug 'farmergreg/vim-lastplace'
 Plug 'godlygeek/tabular'
@@ -187,14 +189,10 @@ noremap <leader>z :Filetypes<CR>
 noremap <leader><CR> :make 
 noremap <leader><tab> :b#<CR>
 noremap <leader><BS> :tabnew<CR> 
-noremap <leader>'' :edit term://fish<CR>
-noremap <leader>'v :vsplit term://fish<CR>
-noremap <leader>'s :split term://fish<CR>
-noremap <leader>"" :edit term://ipython<CR>
-noremap <leader>"v :vsplit term://ipython<CR>
-noremap <leader>"s :split term://ipython<CR>
-noremap <leader>; <Plug>(neoterm-repl-send)
-noremap <leader>;; <Plug>(neoterm-repl-send)<CR>
+noremap <leader>' :terminal<CR>
+noremap <leader>" :split<CR>:terminal<CR>
+noremap <leader>" :split<CR>:terminal<CR>
+noremap <leader>; :VimuxPromptCommand<CR>
 noremap <leader>` :NERDTreeToggle<CR>
 noremap <leader>~ :NERDTreeToggleVCS<CR>
 noremap <leader>- :Locate 
@@ -225,23 +223,36 @@ noremap <leader>: :History:<CR>
 " }}}
 " LEADERL {{{
 let maplocalleader=";"
+" vimux {{{
+nnoremap <localleader>vc :VimuxClearRunnerHistory<CR>
+nnoremap <localleader>vd :VimuxScrollDownInspect<CR>
+nnoremap <localleader>ve :call VimuxSendText(@v)<CR>
+nnoremap <localleader>vi :VimuxInspectRunner<CR>
+nnoremap <localleader>vl :VimuxRunLastCommand<CR>
+nnoremap <localleader>vp :VimuxPromptCommand<CR>
+nnoremap <localleader>vq :VimuxCloseRunner<CR>
+nnoremap <localleader>vs :VimuxInterruptRunner<CR>
+nnoremap <localleader>vt :VimuxTogglePane<CR>
+nnoremap <localleader>vu :VimuxScrollUpInspect<CR>
+nnoremap <localleader>vz :VimuxZoomRunner<CR>
+" }}}
 " python {{{
-noremap <localleader>ib :!bandit %<CR>
-noremap <localleader>ic :!coverage %<CR>
-noremap <localleader>id :!pydoc3 
-noremap <localleader>ie :!python3 %<CR>
-noremap <localleader>if :!black %<CR>
-noremap <localleader>ii :!isort %<CR>
-noremap <localleader>il :!pylint %<CR>
-noremap <localleader>io :!inv
-noremap <localleader>ir :!rope
-noremap <localleader>it :!mypy %<CR>
-noremap <localleader>it :!pytest %<CR>
-noremap <localleader>iu :!vulture %<CR>
-noremap <localleader>iy :!ipython -i %<CR>
-noremap <localleader>ivv :!python3 -m venv venv<CR>
-noremap <localleader>ipi :!python3 -m pip install 
-noremap <localleader>ipn :!python3 -m pip install pynvim<CR>
+nnoremap <localleader>ib :!bandit %<CR>
+nnoremap <localleader>ic :!coverage %<CR>
+nnoremap <localleader>id :!pydoc3 
+nnoremap <localleader>ie :!python3 %<CR>
+nnoremap <localleader>if :!black %<CR>
+nnoremap <localleader>ii :!isort %<CR>
+nnoremap <localleader>il :!pylint %<CR>
+nnoremap <localleader>io :!inv
+nnoremap <localleader>ir :!rope
+nnoremap <localleader>it :!mypy %<CR>
+nnoremap <localleader>it :!pytest %<CR>
+nnoremap <localleader>iu :!vulture %<CR>
+nnoremap <localleader>iy :!ipython -i %<CR>
+nnoremap <localleader>ivv :!python3 -m venv venv<CR>
+nnoremap <localleader>ipi :!python3 -m pip install 
+nnoremap <localleader>ipn :!python3 -m pip install pynvim<CR>
 " }}}
 " vim-test {{{
 nnoremap <localleader>tf :TestFile<CR>
@@ -260,8 +271,9 @@ vnoremap <localleader>el :call RunTmuxPythonChunk()<CR>
 " }}}
 " TERMINAL {{{
 nnoremap <A-o> :on<CR>
-nnoremap <A-s> :split<CR>
-nnoremap <A-v> :vsplit<CR>
+nnoremap <A-q> :close<CR>
+nnoremap <A--> :split<CR>
+nnoremap <A-/> :vsplit<CR>
 nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
@@ -280,7 +292,7 @@ inoremap <A-l> <C-\><C-N><C-w>l
 command! Config execute ":e $MYVIMRC"
 command! Reload execute "source $MYVIMRC"
 " }}}
-" AUTOGROUP {{{
+" AUTOGROUPS {{{
 " Python {{{
 augroup Python
     autocmd!

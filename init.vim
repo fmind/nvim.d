@@ -99,19 +99,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
-let g:projectionist_heuristics={
-\   "setup.py": {
-\       "tests/test_*.py": {
-\           "type": "test",
-\           "alternate": "src/{}.py"
-\       },
-\       "*.py": {
-\           "make": "inv",
-\           "type": "source",
-\           "alternate": "tests/test_{basename}.py"
-\       },
-\   }
-\}
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'

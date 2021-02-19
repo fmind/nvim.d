@@ -237,6 +237,7 @@ nnoremap <localleader>iu :!vulture %<CR>
 nnoremap <localleader>iy :!ipython -i %<CR>
 nnoremap <localleader>ivv :!python3 -m venv venv<CR>
 nnoremap <localleader>ipi :!python3 -m pip install 
+nnoremap <localleader>ipb :!python3 -m pip install ipydb<CR>
 nnoremap <localleader>ipn :!python3 -m pip install pynvim<CR>
 " }}}
 " vim-test {{{

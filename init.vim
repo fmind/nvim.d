@@ -53,9 +53,12 @@ set scrolloff=10
 let g:loaded_matchparen=1
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
+Plug 'aklt/plantuml-syntax'
 Plug 'benmills/vimux'
 let g:VimuxHeight = "40"
 let g:VimuxOrientation="h"
+Plug 'dpelle/vim-LanguageTool'
+let g:languagetool_jar='~/.local/share/LanguageTool-5.3/languagetool-commandline.jar'
 Plug 'easymotion/vim-easymotion'
 Plug 'farmergreg/vim-lastplace'
 Plug 'godlygeek/tabular'
@@ -93,6 +96,7 @@ Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+Plug 'scrooloose/vim-slumlord'
 Plug 'terryma/vim-expand-region'
 Plug 'tomasr/molokai'
 Plug 'tpope/vim-commentary'
@@ -253,6 +257,10 @@ nnoremap <localleader>eh :call RunTmuxPythonAllCellsAbove()<CR>
 nnoremap <localleader>ej :call RunTmuxPythonCell(0)<CR>
 nnoremap <localleader>ek :call RunTmuxPythonCell(1)<CR>
 vnoremap <localleader>el :call RunTmuxPythonChunk()<CR>
+" }}}
+" languagetool {{{
+nnoremap <localleader>ll :LanguageToolCheck<CR>
+nnoremap <localleader>lc :LanguageToolClear<CR>
 " }}}
 " }}}
 " TERMINAL {{{

@@ -97,6 +97,7 @@ let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 Plug 'scrooloose/vim-slumlord'
+Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'terryma/vim-expand-region'
 Plug 'tomasr/molokai'
 Plug 'tpope/vim-commentary'
@@ -257,6 +258,11 @@ nnoremap <localleader>eh :call RunTmuxPythonAllCellsAbove()<CR>
 nnoremap <localleader>ej :call RunTmuxPythonCell(0)<CR>
 nnoremap <localleader>ek :call RunTmuxPythonCell(1)<CR>
 vnoremap <localleader>el :call RunTmuxPythonChunk()<CR>
+" }}}
+" ghost-text {{{
+nnoremap <localleader>gi :GhostInstall<CR>
+nnoremap <localleader>gg :GhostStart<CR>
+nnoremap <localleader>gs :GhostStop<CR>
 " }}}
 " languagetool {{{
 nnoremap <localleader>ll :LanguageToolCheck<CR>

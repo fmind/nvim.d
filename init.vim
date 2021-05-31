@@ -110,6 +110,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'w0rp/ale'
 let g:ale_set_quickfix=1
 let b:ale_fixers={'python': ['black', 'isort']}
@@ -225,6 +227,9 @@ nnoremap <localleader>vs :VimuxInterruptRunner<CR>
 nnoremap <localleader>vt :VimuxTogglePane<CR>
 nnoremap <localleader>vu :VimuxScrollUpInspect<CR>
 nnoremap <localleader>vz :VimuxZoomRunner<CR>
+" }}}
+" pandoc {{{
+nnoremap <localleader>oo :Pandoc 
 " }}}
 " python {{{
 nnoremap <localleader>ib :!bandit %<CR>

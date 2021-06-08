@@ -39,7 +39,7 @@ set spell
 set spelllang=en,fr
 " }}}
 " SYSTEM {{{
-set shell=/bin/bash
+set shell=/usr/bin/fish
 set clipboard=unnamedplus
 let s:windows_clip='/mnt/c/Windows/System32/clip.exe'
 " }}}
@@ -53,12 +53,11 @@ set scrolloff=10
 let g:loaded_matchparen=1
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
-Plug 'aklt/plantuml-syntax'
 Plug 'benmills/vimux'
 let g:VimuxHeight = "40"
 let g:VimuxOrientation="h"
-Plug 'dpelle/vim-LanguageTool'
-let g:languagetool_jar='~/.local/share/LanguageTool-5.3/languagetool-commandline.jar'
+" Plug 'dpelle/vim-LanguageTool'
+" let g:languagetool_jar='~/.local/share/LanguageTool-5.3/languagetool-commandline.jar'
 Plug 'easymotion/vim-easymotion'
 Plug 'farmergreg/vim-lastplace'
 Plug 'godlygeek/tabular'
@@ -72,12 +71,9 @@ let g:test#strategy="vimux"
 let g:test#python#runner="pytest"
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
-Plug 'julienr/vim-cellmode'
-let g:cellmode_tmux_panenumber='1'
-let g:cellmode_default_mappings='0'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
-let g:fzf_layout={ 'down': '40%' }
+let g:fzf_layout={'down': '40%'}
 Plug 'justinmk/vim-sneak' 
 Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
 let g:doge_doc_standard_python='google' 
@@ -231,23 +227,23 @@ nnoremap <localleader>vz :VimuxZoomRunner<CR>
 nnoremap <localleader>oo :Pandoc 
 " }}}
 " python {{{
-nnoremap <localleader>ib :!bandit %<CR>
-nnoremap <localleader>ic :!coverage %<CR>
-nnoremap <localleader>id :!pydoc3 
-nnoremap <localleader>ie :!python3 %<CR>
-nnoremap <localleader>if :!black %<CR>
-nnoremap <localleader>ii :!isort %<CR>
-nnoremap <localleader>il :!pylint %<CR>
-nnoremap <localleader>io :!inv
-nnoremap <localleader>ir :!rope
-nnoremap <localleader>it :!mypy %<CR>
-nnoremap <localleader>it :!pytest %<CR>
-nnoremap <localleader>iu :!vulture %<CR>
-nnoremap <localleader>iy :!ipython -i %<CR>
-nnoremap <localleader>ivv :!python3 -m venv venv<CR>
-nnoremap <localleader>ipi :!python3 -m pip install 
-nnoremap <localleader>ipb :!python3 -m pip install ipydb<CR>
-nnoremap <localleader>ipn :!python3 -m pip install pynvim<CR>
+nnoremap <localleader>pb :!bandit %<CR>
+nnoremap <localleader>pc :!coverage %<CR>
+nnoremap <localleader>pd :!pydoc3 
+nnoremap <localleader>pe :!python3 %<CR>
+nnoremap <localleader>pf :!black %<CR>
+nnoremap <localleader>pi :!isort %<CR>
+nnoremap <localleader>pl :!pylint %<CR>
+nnoremap <localleader>po :!inv
+nnoremap <localleader>pr :!rope
+nnoremap <localleader>pt :!mypy %<CR>
+nnoremap <localleader>pt :!pytest %<CR>
+nnoremap <localleader>pu :!vulture %<CR>
+nnoremap <localleader>py :!ipython -i %<CR>
+nnoremap <localleader>pvv :!python3 -m venv venv<CR>
+nnoremap <localleader>ppi :!python3 -m pip install 
+nnoremap <localleader>ppb :!python3 -m pip install ipydb<CR>
+nnoremap <localleader>ppn :!python3 -m pip install pynvim<CR>
 " }}}
 " vim-test {{{
 nnoremap <localleader>tf :TestFile<CR>
@@ -257,20 +253,10 @@ nnoremap <localleader>tv :TestVisit<CR>
 nnoremap <localleader>tt :TestNearest<CR>
 nnoremap <localleader>tt :TestNearest<CR>
 " }}}
-" cell-mode {{{
-nnoremap <localleader>eh :call RunTmuxPythonAllCellsAbove()<CR>
-nnoremap <localleader>ej :call RunTmuxPythonCell(0)<CR>
-nnoremap <localleader>ek :call RunTmuxPythonCell(1)<CR>
-vnoremap <localleader>el :call RunTmuxPythonChunk()<CR>
-" }}}
 " ghost-text {{{
 nnoremap <localleader>gi :GhostInstall<CR>
 nnoremap <localleader>gg :GhostStart<CR>
 nnoremap <localleader>gs :GhostStop<CR>
-" }}}
-" languagetool {{{
-nnoremap <localleader>ll :LanguageToolCheck<CR>
-nnoremap <localleader>lc :LanguageToolClear<CR>
 " }}}
 " }}}
 " TERMINAL {{{

@@ -71,8 +71,10 @@ let g:test#strategy="vimux"
 let g:test#python#runner="pytest"
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
+Plug 'jreybert/vimagit'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/gv.vim'
 let g:fzf_layout={'down': '40%'}
 Plug 'justinmk/vim-sneak' 
 Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
@@ -81,9 +83,13 @@ let g:doge_enable_mappings=0
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
+Plug 'mattn/vim-gist'
+let g:gist_detect_filetype=1
+let g:gist_post_private=0
+let g:gist_show_privates=1
+Plug 'mattn/webapi-vim'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'junegunn/gv.vim'
 Plug 'preservim/nerdtree'
 let NERDTreeSHowHidden=1
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -171,7 +177,7 @@ noremap <leader>t :BTags<CR>
 noremap <leader>u :YcmCompleter GoToReferences<CR>
 noremap <leader>v :Snippets<CR>
 noremap <leader>w :Windows<CR>
-noremap <leader>x :ALEFixSuggest<CR>
+noremap <leader>x :Magit<CR>
 noremap <leader>y :YcmCompleter GetType<CR>
 noremap <leader>z :Filetypes<CR>
 noremap <leader><CR> :make 
@@ -210,18 +216,27 @@ noremap <leader>: :History:<CR>
 " }}}
 " LEADERL {{{
 let maplocalleader=";"
-" vimux {{{
-nnoremap <localleader>vc :VimuxClearRunnerHistory<CR>
-nnoremap <localleader>vd :VimuxScrollDownInspect<CR>
-nnoremap <localleader>ve :call VimuxSendText(@v)<CR>
-nnoremap <localleader>vi :VimuxInspectRunner<CR>
-nnoremap <localleader>vl :VimuxRunLastCommand<CR>
-nnoremap <localleader>vp :VimuxPromptCommand<CR>
-nnoremap <localleader>vq :VimuxCloseRunner<CR>
-nnoremap <localleader>vs :VimuxInterruptRunner<CR>
-nnoremap <localleader>vt :VimuxTogglePane<CR>
-nnoremap <localleader>vu :VimuxScrollUpInspect<CR>
-nnoremap <localleader>vz :VimuxZoomRunner<CR>
+" ghost {{{
+nnoremap <localleader>bi :GhostInstall<CR>
+nnoremap <localleader>bg :GhostStart<CR>
+nnoremap <localleader>bs :GhostStop<CR>
+" }}}
+" gist {{{
+noremap <localleader>i+ :Gist +1<CR>
+noremap <localleader>i- :Gist -1<CR>
+noremap <localleader>ia :Gist --anonymous<CR>
+noremap <localleader>ib :Gist --browser<CR>
+noremap <localleader>id :Gist --delete<CR>
+noremap <localleader>ie :Gist --edit<CR>
+noremap <localleader>if :Gist --fork<CR>
+noremap <localleader>ic :Gist<CR>
+noremap <localleader>ii :Gist 
+noremap <localleader>il :Gist --list<CR>
+noremap <localleader>im :Gist --multibuffer<CR>
+noremap <localleader>in :Gist --listall<CR>
+noremap <localleader>ip :Gist --private<CR>
+noremap <localleader>is :Gist --liststar<CR>
+noremap <localleader>iu :Gist --public<CR>
 " }}}
 " pandoc {{{
 nnoremap <localleader>oo :Pandoc 
@@ -245,7 +260,7 @@ nnoremap <localleader>ppi :!python3 -m pip install
 nnoremap <localleader>ppb :!python3 -m pip install ipydb<CR>
 nnoremap <localleader>ppn :!python3 -m pip install pynvim<CR>
 " }}}
-" vim-test {{{
+" test {{{
 nnoremap <localleader>tf :TestFile<CR>
 nnoremap <localleader>tl :TestLast<CR>
 nnoremap <localleader>ts :TestSuite<CR>
@@ -253,10 +268,18 @@ nnoremap <localleader>tv :TestVisit<CR>
 nnoremap <localleader>tt :TestNearest<CR>
 nnoremap <localleader>tt :TestNearest<CR>
 " }}}
-" ghost-text {{{
-nnoremap <localleader>gi :GhostInstall<CR>
-nnoremap <localleader>gg :GhostStart<CR>
-nnoremap <localleader>gs :GhostStop<CR>
+" vimux {{{
+nnoremap <localleader>vc :VimuxClearRunnerHistory<CR>
+nnoremap <localleader>vd :VimuxScrollDownInspect<CR>
+nnoremap <localleader>ve :call VimuxSendText(@v)<CR>
+nnoremap <localleader>vi :VimuxInspectRunner<CR>
+nnoremap <localleader>vl :VimuxRunLastCommand<CR>
+nnoremap <localleader>vp :VimuxPromptCommand<CR>
+nnoremap <localleader>vq :VimuxCloseRunner<CR>
+nnoremap <localleader>vs :VimuxInterruptRunner<CR>
+nnoremap <localleader>vt :VimuxTogglePane<CR>
+nnoremap <localleader>vu :VimuxScrollUpInspect<CR>
+nnoremap <localleader>vz :VimuxZoomRunner<CR>
 " }}}
 " }}}
 " TERMINAL {{{

@@ -54,10 +54,8 @@ let g:loaded_matchparen=1
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'benmills/vimux'
-let g:VimuxHeight = "40"
-let g:VimuxOrientation="h"
-" Plug 'dpelle/vim-LanguageTool'
-" let g:languagetool_jar='~/.local/share/LanguageTool-5.3/languagetool-commandline.jar'
+let g:VimuxHeight = "30"
+let g:VimuxOrientation="v"
 Plug 'easymotion/vim-easymotion'
 Plug 'farmergreg/vim-lastplace'
 Plug 'godlygeek/tabular'
@@ -71,6 +69,8 @@ let g:test#strategy="vimux"
 let g:test#python#runner="pytest"
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
+Plug 'jpalardy/vim-slime'
+let g:slime_target="tmux"
 Plug 'jreybert/vimagit'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'

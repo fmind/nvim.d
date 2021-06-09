@@ -70,12 +70,12 @@ let g:test#python#runner="pytest"
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jpalardy/vim-slime'
-let g:slime_target="tmux"
+let g:slime_target="neovim"
 Plug 'jreybert/vimagit'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/gv.vim'
 let g:fzf_layout={'down': '40%'}
+Plug 'junegunn/gv.vim'
 Plug 'justinmk/vim-sneak' 
 Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
 let g:doge_doc_standard_python='google' 
@@ -87,7 +87,7 @@ Plug 'mattn/vim-gist'
 let g:gist_detect_filetype=1
 let g:gist_post_private=0
 let g:gist_show_privates=1
-Plug 'mattn/webapi-vim'
+Plug 'mattn/webapi-vim' " vim-gist dependency
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'preservim/nerdtree'
@@ -282,11 +282,19 @@ nnoremap <localleader>vu :VimuxScrollUpInspect<CR>
 nnoremap <localleader>vz :VimuxZoomRunner<CR>
 " }}}
 " }}}
+" SLIME {{{
+nnoremap <A-;> :SlimeSend<CR>
+nnoremap <A-c> :SlimeConfig<CR>
+nnoremap <A-e> :SlimeSendCurrentLine<CR>
+" }}}
 " TERMINAL {{{
 nnoremap <A-o> :on<CR>
 nnoremap <A-q> :close<CR>
 nnoremap <A--> :split<CR>
 nnoremap <A-/> :vsplit<CR>
+nnoremap <A-v> :vsplit<CR>
+nnoremap <A-'> :terminal<CR>
+nnoremap <A-i> :terminal ipython<CR>
 nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k

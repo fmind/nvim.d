@@ -70,7 +70,10 @@ let g:test#python#runner="pytest"
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jpalardy/vim-slime'
+let g:slime_no_mappings=1
 let g:slime_target="neovim"
+let g:slime_python_ipython=1
+let g:slime_cell_delimiter="# %%"
 Plug 'jreybert/vimagit'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
@@ -283,22 +286,25 @@ nnoremap <localleader>vz :VimuxZoomRunner<CR>
 " }}}
 " }}}
 " SLIME {{{
-nnoremap <A-;> :SlimeSend<CR>
-nnoremap <A-c> :SlimeConfig<CR>
-nnoremap <A-e> :SlimeSendCurrentLine<CR>
+nmap <A-1> :SlimeSend1 
+nmap <A-;> :SlimeSend<CR>
+nmap <A-c> :SlimeConfig<CR>
+nmap <A-m> <Plug>SlimeSendCell
+xmap <A-]> <Plug>SlimeRegionSend
+nmap <A-[> <Plug>SlimeParagraphSend
 " }}}
 " TERMINAL {{{
-nnoremap <A-o> :on<CR>
-nnoremap <A-q> :close<CR>
-nnoremap <A--> :split<CR>
-nnoremap <A-/> :vsplit<CR>
-nnoremap <A-v> :vsplit<CR>
-nnoremap <A-'> :terminal<CR>
-nnoremap <A-i> :terminal ipython<CR>
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
+noremap <A-o> :on<CR>
+noremap <A-q> :close<CR>
+noremap <A--> :split<CR>
+noremap <A-/> :vsplit<CR>
+noremap <A-,> :echo &channel<CR>
+noremap <A-.> :terminal<CR>:echo &channel<CR>
+noremap <A-i> :terminal ipython<CR>:echo &channel<CR>
+noremap <A-h> <C-w>h
+noremap <A-j> <C-w>j
+noremap <A-k> <C-w>k
+noremap <A-l> <C-w>l
 tnoremap <C-[> <C-\><C-n>
 tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j

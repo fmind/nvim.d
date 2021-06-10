@@ -102,7 +102,7 @@ let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 Plug 'scrooloose/vim-slumlord'
-Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+Plug 'raghur/vim-ghost'
 Plug 'terryma/vim-expand-region'
 Plug 'tomasr/molokai'
 Plug 'tpope/vim-commentary'

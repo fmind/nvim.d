@@ -93,6 +93,7 @@ let g:gist_show_privates=1
 Plug 'mattn/webapi-vim' " vim-gist dependency
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'plasticboy/vim-markdown'
 Plug 'preservim/nerdtree'
 let NERDTreeSHowHidden=1
 Plug 'Xuyuanp/nerdtree-git-plugin'

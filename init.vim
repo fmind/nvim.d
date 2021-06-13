@@ -53,6 +53,7 @@ set scrolloff=10
 let g:loaded_matchparen=1
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
+Plug 'aklt/plantuml-syntax'
 Plug 'benmills/vimux'
 let g:VimuxHeight = "30"
 let g:VimuxOrientation="v"

@@ -39,7 +39,7 @@ set spell
 set spelllang=en,fr
 " }}}
 " SYSTEM {{{
-set shell=/usr/bin/zsh
+set shell=/usr/bin/fish
 set clipboard=unnamedplus
 let s:windows_clip='/mnt/c/Windows/System32/clip.exe'
 " }}}

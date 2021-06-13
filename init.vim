@@ -74,7 +74,6 @@ let g:slime_no_mappings=1
 let g:slime_target="neovim"
 let g:slime_python_ipython=1
 let g:slime_cell_delimiter="# %%"
-Plug 'jreybert/vimagit'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
 let g:fzf_layout={'down': '40%'}
@@ -86,11 +85,6 @@ let g:doge_enable_mappings=0
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
-Plug 'mattn/vim-gist'
-let g:gist_detect_filetype=1
-let g:gist_post_private=0
-let g:gist_show_privates=1
-Plug 'mattn/webapi-vim' " vim-gist dependency
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'plasticboy/vim-markdown'
@@ -117,6 +111,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'vim-pandoc/vim-pandoc'
+let g:pandoc#filetypes#pandoc_markdown=0
 Plug 'w0rp/ale'
 let g:ale_set_quickfix=1
 let b:ale_fixers={'python': ['black', 'isort']}
@@ -225,23 +220,6 @@ let maplocalleader=";"
 nnoremap <localleader>bi :GhostInstall<CR>
 nnoremap <localleader>bg :GhostStart<CR>
 nnoremap <localleader>bs :GhostStop<CR>
-" }}}
-" gist {{{
-noremap <localleader>i+ :Gist +1<CR>
-noremap <localleader>i- :Gist -1<CR>
-noremap <localleader>ia :Gist --anonymous<CR>
-noremap <localleader>ib :Gist --browser<CR>
-noremap <localleader>id :Gist --delete<CR>
-noremap <localleader>ie :Gist --edit<CR>
-noremap <localleader>if :Gist --fork<CR>
-noremap <localleader>ic :Gist<CR>
-noremap <localleader>ii :Gist 
-noremap <localleader>il :Gist --list<CR>
-noremap <localleader>im :Gist --multibuffer<CR>
-noremap <localleader>in :Gist --listall<CR>
-noremap <localleader>ip :Gist --private<CR>
-noremap <localleader>is :Gist --liststar<CR>
-noremap <localleader>iu :Gist --public<CR>
 " }}}
 " pandoc {{{
 nnoremap <localleader>oo :Pandoc 

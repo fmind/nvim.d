@@ -39,7 +39,7 @@ set spell
 set spelllang=en,fr
 " }}}
 " SYSTEM {{{
-set shell=/usr/bin/fish
+set shell=/usr/bin/zsh
 set clipboard=unnamedplus
 let s:windows_clip='/mnt/c/Windows/System32/clip.exe'
 " }}}
@@ -148,7 +148,8 @@ xnoremap > >gv
 nnoremap <CR> :
 nnoremap U <C-r>
 nnoremap g. :Gw<CR>
-nnoremap gl :nohl<CR>
+noremap gs :sort<CR>
+noremap gl :nohl<CR>
 cnoremap <C-p> <UP>
 cnoremap <C-n> <DOWN>
 " }}}

@@ -210,7 +210,6 @@ noremap <leader>^ :GV<CR>
 noremap <leader>& :GV!<CR>
 noremap <leader>* :Codi<CR>
 noremap <leader>0 :cd %:p:h<CR>:pwd<CR>
-noremap <leader>| :DB
 noremap <leader>. :edit $MYVIMRC<CR>
 noremap <leader>,, :SaveSession<CR>
 noremap <leader>,o :OpenSession<CR>

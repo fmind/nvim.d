@@ -54,6 +54,7 @@ let g:loaded_matchparen=1
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'aklt/plantuml-syntax'
+Plug 'andymass/vim-matchup'
 Plug 'benmills/vimux'
 let g:VimuxHeight = "30"
 let g:VimuxOrientation="v"
@@ -83,6 +84,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
 let g:doge_doc_standard_python='google' 
 let g:doge_enable_mappings=0
+Plug 'machakann/vim-swap'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
@@ -102,6 +104,7 @@ Plug 'raghur/vim-ghost'
 Plug 'terryma/vim-expand-region'
 Plug 'tomasr/molokai'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
@@ -144,10 +147,15 @@ xnoremap > >gv
 nnoremap <CR> :
 nnoremap U <C-r>
 nnoremap g. :Gw<CR>
-noremap gs :sort<CR>
 noremap gl :nohl<CR>
 cnoremap <C-p> <UP>
 cnoremap <C-n> <DOWN>
+" }}}
+" SWAPS {{{
+omap i, <Plug>(swap-textobject-i)
+xmap i, <Plug>(swap-textobject-i)
+omap a, <Plug>(swap-textobject-a)
+xmap a, <Plug>(swap-textobject-a)
 " }}}
 " EXPAND {{{
 map <C-j> <Plug>(expand_region_expand)
@@ -202,6 +210,7 @@ noremap <leader>^ :GV<CR>
 noremap <leader>& :GV!<CR>
 noremap <leader>* :Codi<CR>
 noremap <leader>0 :cd %:p:h<CR>:pwd<CR>
+noremap <leader>| :DB
 noremap <leader>. :edit $MYVIMRC<CR>
 noremap <leader>,, :SaveSession<CR>
 noremap <leader>,o :OpenSession<CR>

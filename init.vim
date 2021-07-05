@@ -113,6 +113,9 @@ Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
+Plug 'unblevable/quick-scope'
+let g:qs_highlight_on_keys=['f', 'F', 't', 'T']
+" :QuickScopeToggle
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'vim-pandoc/vim-pandoc'
 let g:pandoc#filetypes#pandoc_markdown=0
@@ -142,6 +145,8 @@ nnoremap B g^
 nnoremap E g$
 nnoremap Y y$
 nnoremap , @:
+nnoremap ,, ,
+nnoremap ;; ;
 xnoremap < <gv
 xnoremap > >gv
 nnoremap <CR> :

@@ -94,6 +94,9 @@ Plug 'plasticboy/vim-markdown'
 Plug 'preservim/nerdtree'
 let NERDTreeSHowHidden=1
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'sbdchd/neoformat'
+let g:neoformat_enabled_python = ['isort', 'black']
+let g:neoformat_run_all_formatters = 1
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<c-l>"

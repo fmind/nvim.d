@@ -53,7 +53,6 @@ set scrolloff=10
 let g:loaded_matchparen=1
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
-Plug 'aklt/plantuml-syntax'
 Plug 'andymass/vim-matchup'
 Plug 'benmills/vimux'
 let g:VimuxHeight = "30"
@@ -67,7 +66,7 @@ Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
 Plug 'janko-m/vim-test'
 let g:test#preserve_screen=1
-let g:test#strategy="vimux"
+let g:test#strategy="neovim"
 let g:test#python#runner="pytest"
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
@@ -84,7 +83,6 @@ Plug 'justinmk/vim-sneak'
 Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
 let g:doge_doc_standard_python='google' 
 let g:doge_enable_mappings=0
-Plug 'machakann/vim-swap'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
@@ -118,7 +116,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'unblevable/quick-scope'
 let g:qs_highlight_on_keys=['f', 'F', 't', 'T']
-" :QuickScopeToggle
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'vim-pandoc/vim-pandoc'
 let g:pandoc#filetypes#pandoc_markdown=0
@@ -159,12 +156,6 @@ noremap gl :nohl<CR>
 cnoremap <C-p> <UP>
 cnoremap <C-n> <DOWN>
 " }}}
-" SWAPS {{{
-omap i, <Plug>(swap-textobject-i)
-xmap i, <Plug>(swap-textobject-i)
-omap a, <Plug>(swap-textobject-a)
-xmap a, <Plug>(swap-textobject-a)
-" }}}
 " EXPAND {{{
 map <C-j> <Plug>(expand_region_expand)
 map <C-k> <Plug>(expand_region_shrink)
@@ -194,14 +185,14 @@ noremap <leader>t :BTags<CR>
 noremap <leader>u :YcmCompleter GoToReferences<CR>
 noremap <leader>v :Snippets<CR>
 noremap <leader>w :Windows<CR>
-noremap <leader>x :Magit<CR>
+noremap <leader>x :Neoformat<CR>
 noremap <leader>y :YcmCompleter GetType<CR>
 noremap <leader>z :Filetypes<CR>
 noremap <leader><CR> :make 
 noremap <leader><tab> :b#<CR>
 noremap <leader><BS> :tabnew<CR> 
-noremap <leader>' :terminal<CR>
-noremap <leader>" :split<CR>:terminal<CR>
+noremap <leader>' :vsplit<CR>:terminal<CR>
+noremap <leader>" :vsplit<CR>:terminal ipython<CR>
 noremap <leader>; :VimuxPromptCommand<CR>
 noremap <leader>` :NERDTreeToggle<CR>
 noremap <leader>~ :NERDTreeToggleVCS<CR>
@@ -219,8 +210,6 @@ noremap <leader>& :GV!<CR>
 noremap <leader>* :Codi<CR>
 noremap <leader>0 :cd %:p:h<CR>:pwd<CR>
 noremap <leader>. :edit $MYVIMRC<CR>
-noremap <leader>,, :SaveSession<CR>
-noremap <leader>,o :OpenSession<CR>
 noremap <leader>< gT
 noremap <leader>> gt
 noremap <leader>] :ALENext<CR>
@@ -235,8 +224,8 @@ noremap <leader>: :History:<CR>
 let maplocalleader=";"
 " ghost {{{
 nnoremap <localleader>bi :GhostInstall<CR>
-nnoremap <localleader>bg :GhostStart<CR>
-nnoremap <localleader>bs :GhostStop<CR>
+nnoremap <localleader>bs :GhostStart<CR>
+nnoremap <localleader>bx :GhostStop<CR>
 " }}}
 " pandoc {{{
 nnoremap <localleader>oo :Pandoc 
@@ -259,6 +248,10 @@ nnoremap <localleader>pvv :!python3 -m venv venv<CR>
 nnoremap <localleader>ppi :!python3 -m pip install 
 nnoremap <localleader>ppb :!python3 -m pip install ipydb<CR>
 nnoremap <localleader>ppn :!python3 -m pip install pynvim<CR>
+" }}}
+" session {{{
+noremap <localleader>ss :SaveSession<CR>
+noremap <localleader>so :OpenSession<CR>
 " }}}
 " test {{{
 nnoremap <localleader>tf :TestFile<CR>
@@ -283,21 +276,21 @@ nnoremap <localleader>vz :VimuxZoomRunner<CR>
 " }}}
 " }}}
 " SLIME {{{
-nmap <A-1> :SlimeSend1 
-nmap <A-;> :SlimeSend<CR>
+nmap <A-;> :SlimeSend1
+nmap <A-'> :SlimeSend<CR>
 nmap <A-c> :SlimeConfig<CR>
-nmap <A-m> <Plug>SlimeSendCell
-xmap <A-]> <Plug>SlimeRegionSend
-nmap <A-[> <Plug>SlimeParagraphSend
+nmap <A-e> <Plug>SlimeSendCell
+xmap <A-r> <Plug>SlimeRegionSend
+nmap <A-b> <Plug>SlimeParagraphSend
 " }}}
 " TERMINAL {{{
 noremap <A-o> :on<CR>
 noremap <A-q> :close<CR>
-noremap <A--> :split<CR>
-noremap <A-/> :vsplit<CR>
-noremap <A-,> :echo &channel<CR>
-noremap <A-.> :terminal<CR>:echo &channel<CR>
-noremap <A-i> :terminal ipython<CR>:echo &channel<CR>
+noremap <A-s> :split<CR>
+noremap <A-v> :vsplit<CR>
+noremap <A-t> :terminal<CR>
+noremap <A-i> :terminal ipython<CR>
+noremap <A-a> :echo &channel<CR>
 noremap <A-h> <C-w>h
 noremap <A-j> <C-w>j
 noremap <A-k> <C-w>k
@@ -329,12 +322,6 @@ augroup AutoFmt
     autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 augroup END
 " }}}
-" TermIns {{{
-augroup TermIns
-    autocmd!
-    autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
-augroup END
-" }}}
 " AutoVim {{{
 augroup AutoVim
     autocmd!
@@ -348,5 +335,12 @@ if executable(s:windows_clip)
         autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:windows_clip, @0) | endif
     augroup END
 endif
+" }}}
+" Terminal {{{
+augroup Terminal
+    autocmd!
+    autocmd TermOpen * startinsert
+    autocmd TermOpen * setlocal nonumber norelativenumber
+augroup END
 " }}}
 " }}}

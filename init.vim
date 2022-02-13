@@ -1,4 +1,5 @@
 " vim: fdm=marker
+" CONFS {{{
 " BUFFER {{{
 set hidden
 set confirm
@@ -9,7 +10,12 @@ set autowrite
 set splitbelow
 set splitright
 " }}}
+" FORMAT  {{{
+set autoindent
+set formatoptions-=cro
+" }}}
 " FOLDER {{{
+set foldmethod=indent
 set foldlevelstart=99
 " }}}
 " INDENT {{{
@@ -34,10 +40,6 @@ set incsearch
 set smartcase
 set ignorecase
 " }}}
-" SPELLS {{{
-set spell
-set spelllang=en,fr
-" }}}
 " SYSTEM {{{
 set shell=/usr/bin/fish
 set clipboard=unnamedplus
@@ -49,86 +51,20 @@ set lazyredraw
 set shortmess=I
 set scrolloff=10
 " }}}
+" }}}
 " PLUGIN {{{
 let g:loaded_matchparen=1
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'airblade/vim-gitgutter'
-Plug 'andymass/vim-matchup'
-Plug 'benmills/vimux'
-let g:VimuxHeight = "30"
-let g:VimuxOrientation="v"
-Plug 'easymotion/vim-easymotion'
-Plug 'farmergreg/vim-lastplace'
-Plug 'godlygeek/tabular'
-Plug 'goerz/jupytext.vim'
-let g:jupytext_fmt='py:percent'
-Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
-Plug 'janko-m/vim-test'
-let g:test#preserve_screen=1
-let g:test#strategy="neovim"
-let g:test#python#runner="pytest"
-Plug 'jeetsukumaran/vim-pythonsense'
-Plug 'jiangmiao/auto-pairs'
-Plug 'jpalardy/vim-slime'
-let g:slime_no_mappings=1
-let g:slime_target="neovim"
-let g:slime_python_ipython=1
-let g:slime_cell_delimiter="# %%"
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
 let g:fzf_layout={'down': '40%'}
-Plug 'junegunn/gv.vim'
-Plug 'justinmk/vim-sneak' 
-Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
-let g:doge_doc_standard_python='google' 
-let g:doge_enable_mappings=0
-Plug 'majutsushi/tagbar'
-Plug 'mattn/emmet-vim'
-Plug 'metakirby5/codi.vim'
-Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'plasticboy/vim-markdown'
-Plug 'preservim/nerdtree'
-let NERDTreeSHowHidden=1
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'sbdchd/neoformat'
-let g:neoformat_enabled_python = ['isort', 'black']
-let g:neoformat_run_all_formatters = 1
-Plug 'sheerun/vim-polyglot'
-Plug 'SirVer/ultisnips'
-let g:UltiSnipsExpandTrigger="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-Plug 'scrooloose/vim-slumlord'
-Plug 'raghur/vim-ghost'
-Plug 'terryma/vim-expand-region'
 Plug 'tomasr/molokai'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-dadbod'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
-Plug 'unblevable/quick-scope'
-let g:qs_highlight_on_keys=['f', 'F', 't', 'T']
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-Plug 'vim-pandoc/vim-pandoc'
-let g:pandoc#filetypes#pandoc_markdown=0
-Plug 'w0rp/ale'
-let g:ale_set_quickfix=1
-let b:ale_fixers={'python': ['black', 'isort']}
-let b:ale_linters={'python': ['mypy', 'pylint']}
-let g:ale_python_pylint_options='--error-only'
 Plug 'wellle/targets.vim'
-Plug 'xolox/vim-misc' " vim-session dependency
-Plug 'xolox/vim-session'
-let g:session_autoload='no'
-let g:session_autosave='no'
 call plug#end()
 " }}}
 " COLORS {{{
@@ -144,31 +80,23 @@ nnoremap k gk
 nnoremap B g^
 nnoremap E g$
 nnoremap Y y$
-nnoremap , @:
-nnoremap ,, ,
-nnoremap ;; ;
 xnoremap < <gv
 xnoremap > >gv
 nnoremap <CR> :
 nnoremap U <C-r>
-nnoremap g. :Gw<CR>
 noremap gl :nohl<CR>
 cnoremap <C-p> <UP>
 cnoremap <C-n> <DOWN>
-" }}}
-" EXPAND {{{
-map <C-j> <Plug>(expand_region_expand)
-map <C-k> <Plug>(expand_region_shrink)
 " }}}
 " LEADERS {{{
 let mapleader="\<space>"
 noremap <leader>a :A<CR>
 noremap <leader>b :Buffers<CR>
 noremap <leader>c :Colors<CR>
-noremap <leader>d :DogeGenerate<CR>
+noremap <leader>d :Commits<CR>
 noremap <leader>e :Files<CR>
 noremap <leader>f :Ag<CR>
-noremap <leader>g :YcmCompleter GetDoc<CR>
+noremap <leader>g :GFiles<CR>
 noremap <leader>h :Helptags<CR>
 noremap <leader>i :Lines<CR>
 noremap <leader>j :bnext<CR>
@@ -176,112 +104,24 @@ noremap <leader>k :bprevious<CR>
 noremap <leader>l :BLines<CR>
 noremap <leader>m :Marks<CR>
 noremap <leader>n :BCommits<CR>
-noremap <leader>o :YcmCompleter GoTo<CR>
+noremap <leader>o :Locate
 noremap <leader>p :Commands<CR>
 noremap <leader>q :bdelete<CR>:bnext<CR>
-noremap <leader>r :YcmCompleter RefactorRename 
-noremap <leader>s :YcmCompleter GoToSymbol 
+noremap <leader>r :History<CR>
+noremap <leader>s :Tags<CR>
 noremap <leader>t :BTags<CR>
-noremap <leader>u :YcmCompleter GoToReferences<CR>
+noremap <leader>u :cd %:p:h<CR>:pwd<CR>
 noremap <leader>v :Snippets<CR>
 noremap <leader>w :Windows<CR>
-noremap <leader>x :Neoformat<CR>
-noremap <leader>y :YcmCompleter GetType<CR>
+noremap <leader>x :Maps<CR>
+noremap <leader>y :edit $MYVIMRC<CR>
 noremap <leader>z :Filetypes<CR>
-noremap <leader><CR> :make 
-noremap <leader><tab> :b#<CR>
-noremap <leader><BS> :tabnew<CR> 
 noremap <leader>' :vsplit<CR>:terminal<CR>
 noremap <leader>" :vsplit<CR>:terminal ipython<CR>
-noremap <leader>; :VimuxPromptCommand<CR>
-noremap <leader>` :NERDTreeToggle<CR>
-noremap <leader>~ :NERDTreeToggleVCS<CR>
-noremap <leader>- :Locate 
-noremap <leader>= :Tabularize 
-noremap <leader>_ :GFiles<CR>
-noremap <leader>+ :Commits<CR>
-noremap <leader>! :GitGutterToggle<CR>
-noremap <leader>@ :TagbarToggle<CR>
-noremap <leader># :YcmRestartServer<CR>
-noremap <leader>$ :UltiSnipsEdit<CR>
-noremap <leader>% :setlocal paste!<CR>
-noremap <leader>^ :GV<CR>
-noremap <leader>& :GV!<CR>
-noremap <leader>* :Codi<CR>
-noremap <leader>0 :cd %:p:h<CR>:pwd<CR>
-noremap <leader>. :edit $MYVIMRC<CR>
-noremap <leader>< gT
-noremap <leader>> gt
-noremap <leader>] :ALENext<CR>
-noremap <leader>[ :ALEPrevious<CR>
-noremap <leader>? :Maps<CR>
-noremap <leader>\| :Tags<CR>
-noremap <leader>\ :History<CR>
-noremap <leader>/ :History/<CR>
 noremap <leader>: :History:<CR>
-" }}}
-" LEADERL {{{
-let maplocalleader=";"
-" ghost {{{
-nnoremap <localleader>bi :GhostInstall<CR>
-nnoremap <localleader>bs :GhostStart<CR>
-nnoremap <localleader>bx :GhostStop<CR>
-" }}}
-" pandoc {{{
-nnoremap <localleader>oo :Pandoc 
-" }}}
-" python {{{
-nnoremap <localleader>pb :!bandit %<CR>
-nnoremap <localleader>pc :!coverage %<CR>
-nnoremap <localleader>pd :!pydoc3 
-nnoremap <localleader>pe :!python3 %<CR>
-nnoremap <localleader>pf :!black %<CR>
-nnoremap <localleader>pi :!isort %<CR>
-nnoremap <localleader>pl :!pylint %<CR>
-nnoremap <localleader>po :!inv
-nnoremap <localleader>pr :!rope
-nnoremap <localleader>pt :!mypy %<CR>
-nnoremap <localleader>pt :!pytest %<CR>
-nnoremap <localleader>pu :!vulture %<CR>
-nnoremap <localleader>py :!ipython -i %<CR>
-nnoremap <localleader>pvv :!python3 -m venv venv<CR>
-nnoremap <localleader>ppi :!python3 -m pip install 
-nnoremap <localleader>ppb :!python3 -m pip install ipydb<CR>
-nnoremap <localleader>ppn :!python3 -m pip install pynvim<CR>
-" }}}
-" session {{{
-noremap <localleader>ss :SaveSession<CR>
-noremap <localleader>so :OpenSession<CR>
-" }}}
-" test {{{
-nnoremap <localleader>tf :TestFile<CR>
-nnoremap <localleader>tl :TestLast<CR>
-nnoremap <localleader>ts :TestSuite<CR>
-nnoremap <localleader>tv :TestVisit<CR>
-nnoremap <localleader>tt :TestNearest<CR>
-nnoremap <localleader>tt :TestNearest<CR>
-" }}}
-" vimux {{{
-nnoremap <localleader>vc :VimuxClearRunnerHistory<CR>
-nnoremap <localleader>vd :VimuxScrollDownInspect<CR>
-nnoremap <localleader>ve :call VimuxSendText(@v)<CR>
-nnoremap <localleader>vi :VimuxInspectRunner<CR>
-nnoremap <localleader>vl :VimuxRunLastCommand<CR>
-nnoremap <localleader>vp :VimuxPromptCommand<CR>
-nnoremap <localleader>vq :VimuxCloseRunner<CR>
-nnoremap <localleader>vs :VimuxInterruptRunner<CR>
-nnoremap <localleader>vt :VimuxTogglePane<CR>
-nnoremap <localleader>vu :VimuxScrollUpInspect<CR>
-nnoremap <localleader>vz :VimuxZoomRunner<CR>
-" }}}
-" }}}
-" SLIME {{{
-nmap <A-;> :SlimeSend1
-nmap <A-'> :SlimeSend<CR>
-nmap <A-c> :SlimeConfig<CR>
-nmap <A-e> <Plug>SlimeSendCell
-xmap <A-r> <Plug>SlimeRegionSend
-nmap <A-b> <Plug>SlimeParagraphSend
+noremap <leader>/ :History/<CR>
+noremap <leader><CR> :make 
+noremap <leader><tab> :b#<CR>
 " }}}
 " TERMINAL {{{
 noremap <A-o> :on<CR>
@@ -310,18 +150,6 @@ command! Config execute ":e $MYVIMRC"
 command! Reload execute "source $MYVIMRC"
 " }}}
 " AUTOGROUPS {{{
-" Python {{{
-augroup Python
-    autocmd!
-    autocmd BufNewFile,BufRead * setlocal foldmethod=indent
-augroup END
-" }}}
-" AutoFmt {{{
-augroup AutoFmt
-    autocmd!
-    autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
-augroup END
-" }}}
 " AutoVim {{{
 augroup AutoVim
     autocmd!
